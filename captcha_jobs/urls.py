@@ -1,14 +1,10 @@
-"""
-URL configuration for CAPTCHA jobs API
-"""
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import CaptchaJobViewSet, CaptchaLogViewSet
+
+from .views import CaptchaJobViewSet, JobExecutionViewSet
 
 router = DefaultRouter()
-router.register(r'jobs', CaptchaJobViewSet, basename='captcha-job')
-router.register(r'logs', CaptchaLogViewSet, basename='captcha-log')
+router.register("", CaptchaJobViewSet, basename="captcha-job")
+router.register("executions", JobExecutionViewSet, basename="job-execution")
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = [path("", include(router.urls))]
