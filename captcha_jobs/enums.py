@@ -1,43 +1,26 @@
-"""
-Enums for CAPTCHA job system.
-"""
-
-from enum import Enum
+from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
-class JobStatus(str, Enum):
-    """Job execution status."""
-    IDLE = 'idle'
-    PENDING = 'pending'
-    RUNNING = 'running'
-    PAUSED = 'paused'
-    STOPPED = 'stopped'
-    COMPLETED = 'completed'
-    FAILED = 'failed'
-    CANCELLED = 'cancelled'
+class JobStatus(models.TextChoices):
+    IDLE = "idle", _("Idle")
+    PENDING = "pending", _("Pending")
+    RUNNING = "running", _("Running")
+    PAUSED = "paused", _("Paused")
+    STOPPED = "stopped", _("Stopped")
+    COMPLETED = "completed", _("Completed")
+    FAILED = "failed", _("Failed")
+    CANCELLED = "cancelled", _("Cancelled")
 
 
-class ExecutionMode(str, Enum):
-    """Job execution mode."""
-    CONTINUOUS = 'continuous'
-    SCHEDULED = 'scheduled'
-    ONE_TIME = 'one_time'
+class ExecutionMode(models.TextChoices):
+    CONTINUOUS = "continuous", _("Continuous")
+    SCHEDULED = "scheduled", _("Scheduled")
+    ONE_TIME = "one_time", _("One Time")
 
 
-class JobPriority(str, Enum):
-    """Job priority level."""
-    CRITICAL = 'critical'
-    HIGH = 'high'
-    NORMAL = 'normal'
-    LOW = 'low'
-
-
-class StopReason(str, Enum):
-    """Reason for job stopping."""
-    MANUAL = 'manual'
-    MAX_ITERATIONS = 'max_iterations'
-    ERROR = 'error'
-    SCHEDULE = 'schedule'
-    BALANCE_EXHAUSTED = 'balance_exhausted'
-    ACCOUNT_SUSPENDED = 'account_suspended'
-    SYSTEM = 'system'
+class JobPriority(models.TextChoices):
+    CRITICAL = "critical", _("Critical")
+    HIGH = "high", _("High")
+    NORMAL = "normal", _("Normal")
+    LOW = "low", _("Low")

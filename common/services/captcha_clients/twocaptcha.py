@@ -97,7 +97,7 @@ class TwoCaptchaClient(BaseCaptchaClient):
         }
         
         # Common parameters
-        if request.websiteURL:
+        if request.site_url:
             params['websiteURL'] = request.site_url
         
         # Type-specific parameters

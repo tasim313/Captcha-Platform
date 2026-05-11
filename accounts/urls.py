@@ -1,14 +1,11 @@
-"""
-URL configuration for accounts API
-"""
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import CaptchaAccountViewSet, AccountAuditLogViewSet
+
+from .views import AccountAuditLogViewSet, CaptchaAccountViewSet, CaptchaServiceProviderViewSet
 
 router = DefaultRouter()
-router.register(r'accounts', CaptchaAccountViewSet, basename='captcha-account')
-router.register(r'audit-logs', AccountAuditLogViewSet, basename='account-audit-log')
+router.register("providers", CaptchaServiceProviderViewSet, basename="provider")
+router.register("", CaptchaAccountViewSet, basename="account")
+router.register("audit-logs", AccountAuditLogViewSet, basename="account-audit-log")
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = [path("", include(router.urls))]
